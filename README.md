@@ -74,10 +74,7 @@ For developing code that sits on remote systems, it is convenient to use VSCode 
 
 ## Configuring the Debug Setup
 1. Clone [Simon's repository](https://github.com/infomon/vscode_remote_debugging) in your remote machine, in this repository directory, i.e., inside `/path/to/HelloCluster/`.
-2. Change the following line in `vscode_remote_debugging/init.sh`:
-      * From:  `python debug/_init.py --ip $ip --port $PORT --path $LAUNCH_JSON`
-      * To:  `python vscode_remote_debugging/_init.py --ip $ip --port $PORT --path $LAUNCH_JSON`
-3. Follow the instructions in his repo for the one-time setup.
+2. Follow the instructions in his repo for the one-time setup.
 
 Your configured `config.conf` should look something like this
 
