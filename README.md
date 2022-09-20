@@ -2,7 +2,7 @@
 1. Clone this repository in the remote machine
 2. Set up [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
 3. Create a new environment:
-   *    `conda create env --name hello_cluster_env python=3.9`
+   *    `conda create --name hello_cluster_env python=3.9`
 4. Activate the new environment and install the requirements:
    * `conda activate hello_cluster_env`
    * `pip install -r requirements.txt`
