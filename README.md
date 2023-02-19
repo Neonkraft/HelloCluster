@@ -116,3 +116,26 @@ Don't worry about the mismatch between the port numbers in `launch.json` and `co
    * `View` > `Run` > `Python: Remote Attach`
 5. Debug as if the code is running on your local machine!
 
+
+# Tips on cluster usage
+
+* **Disk storage**: Always use [workspaces](https://kb.hlrs.de/platforms/index.php/Workspace_mechanism) for storing experiment data and for any I/O during a program run. This keeps the load on the login node low and allows faster I/O. Check `man ws_list`, `man ws_allocate` and `man ws_extend`.
+* **Shared workspace**: When working on a collaborative project. Creating and executing [this script](https://gist.github.com/Neeratyoy/4cdf58f770164dfeea8be0e8d47fb6a7) allows read-write for other users.
+* **Resource allocation request** (SBATCH parameter advice): It is important to know how much resources a job is requesting conditioned on the resource availability,
+  * CPUs and GPUs requested: Check `sinfo` to see available resources. Resources requested should leave some resources free. If filling up a partition, the cluster [communication channel](https://im.tnt.uni-hannover.de/automl/channels/gpu-lovers) should be notified accordingly.
+    * Each GPU requests 8 CPUs overriding the `--cpus-per-task` or `-c` flags
+  * Memory requirement: Specifying `--mem` explicitly affects the resources requested in reality
+    * A node has multiple CPU cores (~20) and the node RAM is split among these cores (~6 GB per CPU)
+    * Requesting more than 6GB could actually request more than 1 CPU overriding the `--cpus-per-task` or `-c` flags
+    * A good practice is to use `srun` or a test `sbatch` job to test actual memory requirements
+  * Time limits: Note the default timelimit of a job on a partition by `sinfo` when not specifying explicitly
+    * The scheduler priority assigned to a job is often inversely proportional to the timilimit specified
+* **Array jobs**: To prevent filling out a partition and leave resources for other users, using an [arrayjob](https://slurm.schedmd.com/job_array.html) is a must for multiple job deployments
+  * Using `%n` and the above calculations of resource utilization, the near exact estimate of job runtime can be made
+  * Post deployment, the resource request of a job can be updated
+    * Update number of jobs in array job: `scontrol update ArrayTaskThrottle=[new n] JobId=[XXX]`
+    * Jobs can be moved to an emptier partition: `scontrol update partition=[new partition] JobId=[XXX]`
+* For any confusion regarding cluster usage and behaviour:
+  * First search on the internet
+  * Ask in the [Mattermost channel](https://im.tnt.uni-hannover.de/automl/channels/gpu-lovers)
+  * Raise a ticket (if permissions exist) [here](https://osticket.informatik.uni-freiburg.de/tickets.php)
