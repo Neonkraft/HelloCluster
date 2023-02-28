@@ -9,7 +9,7 @@
 5. You should now be able to run the code as follows:
    * `python main.py --<cmd-line-arguments> <values>`
 
-**IMPORTANT:** Remember, you are **not** supposed to run your python scripts this way on the clusters. Scripts should always be submitted as jobs (see next section). The *login nodes* should never be used for any kind of *compute* (not even, say, to run *Tensorboard*). Step 4 is only for local installations on your computer.
+**IMPORTANT:** Remember, you are **not** supposed to run your python scripts this way on the clusters. Scripts should always be submitted as jobs (see next section). The *login nodes* should never be used for any kind of *compute* (not even, say, to run *Tensorboard*). Step 5 is only for local installations on your computer.
 
 In the KI-SLURM (Meta) cluster, your account will be penalized by limiting your CPU usage for a while if you run compute-intensive processes on login nodes.
 
