@@ -135,8 +135,3 @@ Don't worry about the mismatch between the port numbers in `launch.json` and `co
   * Post deployment, the resource request of a job can be updated
     * Update number of jobs in array job: `scontrol update ArrayTaskThrottle=[new n] JobId=[XXX]`
     * Jobs can be moved to an emptier partition: `scontrol update partition=[new partition] JobId=[XXX]`
-* For any confusion regarding cluster usage and behaviour:
-  * First search on the internet
-  * Ask in the [Mattermost channel](https://im.tnt.uni-hannover.de/automl/channels/gpu-lovers)
-  * Raise a ticket (if permissions exist) [here](https://osticket.informatik.uni-freiburg.de/tickets.php)
-
